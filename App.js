@@ -19,7 +19,7 @@ function App() {
   var year = new Date().getFullYear();
 
   //Weekcalculator(String(date), String(month), String(year));
-  Weekcalculator(String(5), String(8), String(2021));
+  Weekcalculator(String(29), String(8), String(2021));
 
   return (
     <FlatList

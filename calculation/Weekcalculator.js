@@ -33,7 +33,7 @@ const Weekcalculator = (date, month, year) => {
     }
   });
 
-  let day = daycalculator(date, month, year);
+  let day = daycalculator(parseInt(date), parseInt(month), parseInt(year));
   //console.log(day);
   //console.log(weekdaysname[day].weekdayname);
   Allweekcalculator(parseInt(date), daysinmonth, day);
@@ -67,8 +67,8 @@ const Weekcalculator = (date, month, year) => {
   function daycalculator(date, month, year) {
     let t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
     year -= month < 3 ? 1 : 0;
-    return (
-      (year + year / 4 - year / 100 + year / 400 + t[month - 1] + date) % 7
+    return Math.round(
+      (year + year / 4 - year / 100 + year / 400 + t[month - 1] + date) % 7,
     );
   }
 };

@@ -107680,7 +107680,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var date = new Date().getDate();
     var month = new Date().getMonth() + 1;
     var year = new Date().getFullYear();
-    (0, _Weekcalculator.default)(String(1), String(9), String(2021));
+    (0, _Weekcalculator.default)(String(5), String(8), String(2021));
     return React.createElement(_reactNative.FlatList, {
       keyExtractor: function keyExtractor(item, index) {
         return item.id;
@@ -107771,7 +107771,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         }
       }
     });
-    var day = daycalculator(year.substr(2, 3), month, date);
+    var day = daycalculator(parseInt(date), parseInt(month), parseInt(year));
     Allweekcalculator(parseInt(date), daysinmonth, day);
 
     function Allweekcalculator(date, daysinmonth, day) {
@@ -107799,8 +107799,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }
 
-    function daycalculator(startingdatesecond, month, date) {
-      return (Math.floor((parseInt(startingdatesecond) + Math.floor(parseInt(startingdatesecond) / 4)) % 7) + parseInt(month) + parseInt(date)) % 7;
+    function daycalculator(date, month, year) {
+      var t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
+      year -= month < 3 ? 1 : 0;
+      var fred = (year + year / 4 - year / 100 + year / 400 + t[month - 1] + date) % 7;
     }
   };
 
