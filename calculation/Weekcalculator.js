@@ -47,7 +47,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
           ),
         );
         date = date + 1;
@@ -58,7 +58,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
           ),
         );
         date = date + 1;
@@ -69,7 +69,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
           ),
         );
         date = date + 1;
@@ -77,10 +77,7 @@ const Weekcalculator = (date, month, year) => {
       }
     }
   }
-  function increment() {
-    date = date + 1;
-    day = day + 1;
-  }
+
   function daycalculator(date, month, year) {
     let t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
     year -= month < 3 ? 1 : 0;
