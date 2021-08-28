@@ -8,7 +8,6 @@ const Weekcalculator = (date, month, year) => {
   var calender = [
     {name: 30, month: ['4', '6', '9']},
     {name: 31, month: ['1', '3', '5', '7', '8', '10', '11', '12']},
-    {name: 29, month: '2'},
     {name: 28, month: '2'},
   ];
 
