@@ -36,7 +36,7 @@ const Weekcalculator = (date, month, year) => {
   let day = daycalculator(date, month, year);
   //console.log(day);
   //console.log(weekdaysname[day].weekdayname);
-  Allweekcalculator(date - day, daysinmonth, day);
+  Allweekcalculator(date - day, daysinmonth, parseInt(day));
 
   function Allweekcalculator(date, daysinmonth, day) {
     for (let j = 0; j <= 6; j++) {
