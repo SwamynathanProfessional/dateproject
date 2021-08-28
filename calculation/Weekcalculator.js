@@ -5,6 +5,7 @@ import Category from '../Models/category';
 import {CATEGORIES} from '../data/dummy-data';
 const Weekcalculator = (date, month, year) => {
   var daysinmonth = '';
+
   var calender = [
     {name: 30, month: ['4', '6', '9']},
     {name: 31, month: ['1', '3', '5', '7', '8', '10', '11', '12']},
@@ -32,7 +33,9 @@ const Weekcalculator = (date, month, year) => {
     }
   });
 
-  let day = daycalculator(parseInt(date), parseInt(month), parseInt(year));
+  let day = parseInt(
+    daycalculator(parseInt(date), parseInt(month), parseInt(year)),
+  );
   //console.log(day);
   //console.log(weekdaysname[day].weekdayname);
   Allweekcalculator(parseInt(date), daysinmonth, day);
@@ -41,28 +44,43 @@ const Weekcalculator = (date, month, year) => {
     for (let j = 0; j <= 6; j++) {
       if (date <= daysinmonth && day <= 6) {
         CATEGORIES.push(
-          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
+          new Category(
+            date,
+            weekdaysname[day].weekdayname,
+            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+          ),
         );
         date = date + 1;
         day = day + 1;
       } else if (day > 6) {
         day = 0;
         CATEGORIES.push(
-          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
+          new Category(
+            date,
+            weekdaysname[day].weekdayname,
+            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+          ),
         );
         date = date + 1;
         day = day + 1;
       } else {
         date = 1;
         CATEGORIES.push(
-          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
+          new Category(
+            date,
+            weekdaysname[day].weekdayname,
+            j <= 1 ? (j === 0 ? '#7fff00' : '#7ff') : '#FF0000',
+          ),
         );
         date = date + 1;
         day = day + 1;
       }
     }
   }
-
+  function increment() {
+    date = date + 1;
+    day = day + 1;
+  }
   function daycalculator(date, month, year) {
     let t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
     year -= month < 3 ? 1 : 0;

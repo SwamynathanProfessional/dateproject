@@ -4,10 +4,12 @@ import {View, Text, StyleSheet} from 'react-native';
 const CalenderGridTitle = props => {
   return (
     <View style={styles.gridItem}>
-      <View style={{...styles.container, ...{backgroundColor: props.color}}}>
-        <Text style={styles.title}>{props.startingdate}</Text>
-        <Text style={styles.title}>{props.dayname}</Text>
-      </View>
+      {
+        <View style={{...styles.container, ...{backgroundColor: props.color}}}>
+          <Text style={styles.title}>{props.startingdate}</Text>
+          <Text style={styles.title}>{props.dayname}</Text>
+        </View>
+      }
     </View>
   );
 };
