@@ -33,44 +33,42 @@ const Weekcalculator = (date, month, year) => {
     }
   });
 
-  let day = daycalculator(year.substr(2, 3), month, date);
+  let day = daycalculator(date, month, year);
   //console.log(day);
   //console.log(weekdaysname[day].weekdayname);
-  Allweekcalculator(date - day, daysinmonth, day);
+  Allweekcalculator(parseInt(date), daysinmonth, day);
 
   function Allweekcalculator(date, daysinmonth, day) {
     for (let j = 0; j <= 6; j++) {
-      if (date < daysinmonth) {
-        if (j === day) {
-          CATEGORIES.push(
-            new Category(date, weekdaysname[j].weekdayname, '#f54'),
-          );
-          date = date + 1;
-        } else {
-          CATEGORIES.push(
-            new Category(date, weekdaysname[j].weekdayname, '#f5428d'),
-          );
-          date = date + 1;
-        }
+      if (date <= daysinmonth && day <= 6) {
+        CATEGORIES.push(
+          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
+        );
+        date = date + 1;
+        day = day + 1;
+      } else if (day > 6) {
+        day = 0;
+        CATEGORIES.push(
+          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
+        );
+        date = date + 1;
+        day = day + 1;
       } else {
         date = 1;
         CATEGORIES.push(
-          new Category(date, weekdaysname[j].weekdayname, '#f5428d'),
+          new Category(date, weekdaysname[day].weekdayname, '#f5428d'),
         );
+        date = date + 1;
+        day = day + 1;
       }
     }
   }
 
-  function daycalculator(startingdatesecond, month, date) {
+  function daycalculator(date, month, year) {
+    let t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
+    year -= month < 3 ? 1 : 0;
     return (
-      (Math.floor(
-        (parseInt(startingdatesecond) +
-          Math.floor(parseInt(startingdatesecond) / 4)) %
-          7,
-      ) +
-        parseInt(month) +
-        parseInt(date)) %
-      7
+      (year + year / 4 - year / 100 + year / 400 + t[month - 1] + date) % 7
     );
   }
 };
