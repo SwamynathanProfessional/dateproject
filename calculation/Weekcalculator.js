@@ -1,6 +1,3 @@
-import {parse} from '@babel/core';
-import * as React from 'react';
-import {View, Text} from 'react-native';
 import Category from '../Models/category';
 import {CATEGORIES} from '../data/dummy-data';
 const Weekcalculator = (date, month, year) => {
@@ -47,7 +44,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;
@@ -58,7 +55,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;
@@ -69,7 +66,7 @@ const Weekcalculator = (date, month, year) => {
           new Category(
             date,
             weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#FF0000') : '#7ff',
+            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;

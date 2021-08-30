@@ -4,12 +4,14 @@ import {View, Text, StyleSheet} from 'react-native';
 const CalenderGridTitle = props => {
   return (
     <View style={styles.gridItem}>
-      {
-        <View style={{...styles.container, ...{backgroundColor: props.color}}}>
-          <Text style={styles.title}>{props.startingdate}</Text>
-          <Text style={styles.title}>{props.dayname}</Text>
-        </View>
-      }
+      <View style={styles.container}>
+        <Text style={{...styles.title, ...{color: props.color, fontSize: 30}}}>
+          {props.startingdate}
+        </Text>
+        <Text style={{...styles.title, ...{color: props.color}}}>
+          {props.dayname}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -29,11 +31,11 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 10,
     padding: 15,
+    backgroundColor: '#696969',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
   },
   title: {
-    fontSize: 22,
     textAlign: 'left',
   },
 });
