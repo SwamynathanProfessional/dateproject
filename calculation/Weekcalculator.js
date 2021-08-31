@@ -1,12 +1,13 @@
 import Category from '../Models/category';
 import {CATEGORIES} from '../data/dummy-data';
 const Weekcalculator = (date, month, year) => {
-  var daysinmonth = '';
+  var daysinmonth;
+  var prevdaysinmonth;
 
   var calender = [
-    {number: 30, month: ['4', '6', '9']},
-    {number: 31, month: ['1', '3', '5', '7', '8', '10', '11', '12']},
-    {number: 28, month: '2'},
+    {number: 30, month: [4, 6, 9, 10]},
+    {number: 31, month: [1, 3, 5, 7, 8, 11, 12]},
+    {number: 28, month: 2},
   ];
 
   var weekdaysname = [
@@ -26,25 +27,31 @@ const Weekcalculator = (date, month, year) => {
       if (x === month) {
         daysinmonth = item.number;
         break;
+      } else if (x === month - 1) {
+        prevdaysinmonth = item.number;
       }
     }
   });
 
-  let day = parseInt(
-    daycalculator(parseInt(date), parseInt(month), parseInt(year)),
-  );
+  let day = parseInt(daycalculator(date, month, year));
   //console.log(day);
   //console.log(weekdaysname[day].weekdayname);
-  Allweekcalculator(parseInt(date), daysinmonth, day);
+  if (date === 1) {
+    Allweekcalculator(prevdaysinmonth - (day - 1), prevdaysinmonth, day);
+  } else {
+    Allweekcalculator(date - day, daysinmonth, day);
+  }
 
   function Allweekcalculator(date, daysinmonth, day) {
+    var loopday = day;
     for (let j = 0; j <= 6; j++) {
       if (date <= daysinmonth && day <= 6) {
         CATEGORIES.push(
           new Category(
             date,
-            weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
+            weekdaysname[j].weekdayname,
+            sendcolour(j, loopday),
+            //  j <= loopday ? (j === loopday ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;
@@ -54,8 +61,9 @@ const Weekcalculator = (date, month, year) => {
         CATEGORIES.push(
           new Category(
             date,
-            weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
+            weekdaysname[j].weekdayname,
+            sendcolour(j, loopday),
+            // j <= loopday ? (j === loopday ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;
@@ -65,13 +73,24 @@ const Weekcalculator = (date, month, year) => {
         CATEGORIES.push(
           new Category(
             date,
-            weekdaysname[day].weekdayname,
-            j <= 1 ? (j === 0 ? '#7fff00' : '#ff4500') : '#7ff',
+            weekdaysname[j].weekdayname,
+            sendcolour(j, loopday),
+            //  j <= loopday ? (j === loopday ? '#7fff00' : '#ff4500') : '#7ff',
           ),
         );
         date = date + 1;
         day = day + 1;
       }
+    }
+  }
+
+  function sendcolour(j, loopday) {
+    if (j === loopday) {
+      return '#7fff00';
+    } else if (j === loopday + 1) {
+      return '#ff4500';
+    } else {
+      return '#7ff';
     }
   }
 

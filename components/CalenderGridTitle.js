@@ -8,7 +8,7 @@ const CalenderGridTitle = props => {
         <Text style={{...styles.title, ...{color: props.color, fontSize: 45}}}>
           {props.startingdate}
         </Text>
-        <Text style={{...styles.title, ...{color: props.color}}}>
+        <Text style={{...styles.title, ...{color: props.color, fontSize: 15}}}>
           {props.dayname}
         </Text>
       </View>
