@@ -4,9 +4,9 @@ const Weekcalculator = (date, month, year) => {
   var daysinmonth = '';
 
   var calender = [
-    {name: 30, month: ['4', '6', '9']},
-    {name: 31, month: ['1', '3', '5', '7', '8', '10', '11', '12']},
-    {name: 28, month: '2'},
+    {number: 30, month: ['4', '6', '9']},
+    {number: 31, month: ['1', '3', '5', '7', '8', '10', '11', '12']},
+    {number: 28, month: '2'},
   ];
 
   var weekdaysname = [
@@ -19,12 +19,12 @@ const Weekcalculator = (date, month, year) => {
     {weekdayname: 'Saturday', number: 6},
   ];
 
-  calender.map((item, index) => {
+  calender.map(item => {
     var months = item.month;
     for (let i in months) {
       let x = months[i];
       if (x === month) {
-        daysinmonth = item.name;
+        daysinmonth = item.number;
         break;
       }
     }
