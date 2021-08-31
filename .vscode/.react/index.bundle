@@ -107680,7 +107680,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var date = new Date().getDate();
     var month = new Date().getMonth() + 1;
     var year = new Date().getFullYear();
-    (0, _Weekcalculator.default)(1, 9, 2021);
+    (0, _Weekcalculator.default)(2, 4, 2021);
     return React.createElement(_reactNative.FlatList, {
       keyExtractor: function keyExtractor(item, index) {
         return item.id;
@@ -107766,7 +107766,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var day = parseInt(daycalculator(date, month, year));
 
     if (date === 1) {
-      Allweekcalculator(prevdaysinmonth - (day - 1), daysinmonth, day);
+      Allweekcalculator(prevdaysinmonth - (day - 1), prevdaysinmonth, day);
     } else {
       Allweekcalculator(date - day, daysinmonth, day);
     }
