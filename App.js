@@ -13,12 +13,20 @@ function App() {
       />
     );
   };
+  let curr = new Date();
+  let week = [];
+  var first;
+  for (let i = 0; i <= 6; i++) {
+    first = curr.getDate() - curr.getDay() + i;
 
-  var date = new Date().getDate();
-  var month = new Date().getMonth() + 1;
-  var year = new Date().getFullYear();
+    let day = new Date(curr.setDate(first)).toISOString().slice(8, 10);
+    week.push(day);
+  }
+  // var date = new Date().getDate();
+  // var month = new Date().getMonth() + 1;
+  // var year = new Date().getFullYear();
 
-  Weekcalculator(date, month, year);
+  Weekcalculator(week, curr.getDay);
 
   return (
     <FlatList
