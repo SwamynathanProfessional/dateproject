@@ -11,8 +11,8 @@ const Weekcalculator = (week, dayoftheweek) => {
     {weekdayname: 'Saturday', number: 6},
   ];
 
-  week.map(item => {
-    CATEGORIES.push(new Category(item, weekdaysname.weekdayname));
+  week.map((item, index) => {
+    CATEGORIES.push(new Category(item));
   });
 
   function sendcolour(j, loopday) {

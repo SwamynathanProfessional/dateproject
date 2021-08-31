@@ -107744,8 +107744,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       weekdayname: 'Saturday',
       number: 6
     }];
-    week.map(function (item) {
-      console.log(item);
+    week.map(function (item, index) {
+      _$$_REQUIRE(_dependencyMap[2], "../data/dummy-data").CATEGORIES.push(new _category.default(item));
     });
 
     function sendcolour(j, loopday) {
@@ -107766,7 +107766,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _c;
 
   $RefreshReg$(_c, "Weekcalculator");
-},500,[3,501],"calculation\\Weekcalculator.js");
+},500,[3,501,502],"calculation\\Weekcalculator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
