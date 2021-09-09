@@ -12,13 +12,19 @@ const Weekcalculator = (week, dayoftheweek) => {
   ];
 
   week.map((item, index) => {
-    CATEGORIES.push(new Category(item));
+    CATEGORIES.push(
+      new Category(
+        item,
+        weekdaysname[index].weekdayname,
+        sendcolour(index, dayoftheweek),
+      ),
+    );
   });
 
-  function sendcolour(j, loopday) {
-    if (j === loopday) {
+  function sendcolour(index, day) {
+    if (index === day) {
       return '#7fff00';
-    } else if (j === loopday + 1) {
+    } else if (index === day + 1) {
       return '#ff4500';
     } else {
       return '#7ff';

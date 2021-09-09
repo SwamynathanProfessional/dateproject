@@ -1,42 +1,46 @@
 import * as React from 'react';
-import Weekcalculator from './calculation/Weekcalculator';
-import {FlatList} from 'react-native';
-import CalenderGridTitle from './components/CalenderGridTitle';
-import {CATEGORIES} from './data/dummy-data';
+import SplashScreen from 'react-native-splash-screen'
+import {Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Image, Alert} from 'react-native';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 function App() {
-  const renderGridItem = itemData => {
-    return (
-      <CalenderGridTitle
-        startingdate={itemData.item.startingdate}
-        dayname={itemData.item.dayname}
-        color={itemData.item.color}
-      />
-    );
-  };
-  let curr = new Date();
-  let week = [];
-  var first;
-  for (let i = 0; i <= 6; i++) {
-    first = curr.getDate() - curr.getDay() + i;
-
-    let day = new Date(curr.setDate(first)).toISOString().slice(8, 10);
-    week.push(day);
-  }
-  // var date = new Date().getDate();
-  // var month = new Date().getMonth() + 1;
-  // var year = new Date().getFullYear();
-
-  Weekcalculator(week, curr.getDay);
-
+   SplashScreen.hide();
+  
+  
   return (
-    <FlatList
-      keyExtractor={(item, index) => item.id}
-      data={CATEGORIES}
-      horizontal
-      numColumns={1}
-      renderItem={renderGridItem}
-    />
+    <View>
+     <View style={styles.gridItem}>
+    
+ <Text style={styles.centerItem}> connect</Text>
+  
+ </View>
+  
+ </View>
   );
 }
 
+const styles = StyleSheet.create({
+  gridItem: {
+    position: 'absolute',
+    fontSize: 2,
+ 
+   top: windowWidth * 0.8 * 0.7,  
+    alignItems: 'center',
+     width: windowWidth * 0.8,
+     height: windowHeight * 0.8,
+     fontFamily: 'Quicksand-Medium',
+    left: 35,
+     
+  },
+   
+  centerItem: {
+    fontFamily: 'Quicksand-Medium',
+    fontSize: 55,
+    position: 'absolute',
+top:100
+    
+  },
+ 
+});
 export default App;
