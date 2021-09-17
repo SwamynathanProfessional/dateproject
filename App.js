@@ -1,22 +1,37 @@
 import * as React from 'react';
 import SplashScreen from 'react-native-splash-screen'
 import {Dimensions} from 'react-native';
+import { OT } from 'opentok-react-native';
 import {Text, View, StyleSheet, Image, Alert} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 function App() {
    SplashScreen.hide();
+   const publisherProperties = {
+    publishAudio: false,
+    cameraPosition: 'back'
+  };
   
-  
+  const publisherEventHandlers = {
+    streamCreated: event => {
+      console.log('Publisher stream created!', event);
+    },
+    streamDestroyed: event => {
+      console.log('Publisher stream destroyed!', event);
+    }
+  };
+
   return (
-    <View>
-     <View style={styles.gridItem}>
+    <OTSession apiKey="47338451" sessionId="2_MX40NzMzODQ1MX5-MTYzMTg3MTE3MDI5NX5DNHVRMmpXeVplNy9NODhtaTVkVExQSGt-fg"
+     token="T1==cGFydG5lcl9pZD00NzMzODQ1MSZzaWc9Y2RkOGEzZjdjNzAzMTk4Y2Y1NWU3ZjczZjY2NzZjMjYyM2JjN2JhMTpzZXNzaW9uX2lkPTJfTVg0ME56TXpPRFExTVg1LU1UWXpNVGczTVRFM01ESTVOWDVETkhWUk1tcFhlVnBsTnk5Tk9EaHRhVFZrVkV4UVNHdC1mZyZjcmVhdGVfdGltZT0xNjMxODcxMjQ1Jm5vbmNlPTAuMjM5ODA4MzI2NTEyMzkwNDgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTYzMTg5Mjg0NCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==">
+    <OTPublisher
     
- <Text style={styles.centerItem}> connect</Text>
-  
- </View>
-  
- </View>
+      properties={publisherProperties}
+      eventHandlers={publisherEventHandlers}
+      style={{ height: 400, width: 500 }}
+    />
+   <OTSubscriber  style={{ height: 400, width: 500 }} />
+  </OTSession>
   );
 }
 
