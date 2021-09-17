@@ -1,46 +1,137 @@
 import * as React from 'react';
 import SplashScreen from 'react-native-splash-screen'
-import {Dimensions} from 'react-native';
-import {Text, View, StyleSheet, Image, Alert} from 'react-native';
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { useEffect, useState } from 'react';
+import {View, StyleSheet, Alert, Button} from 'react-native';
+ 
+ 
+import messaging from '@react-native-firebase/messaging';
 function App() {
+  
    SplashScreen.hide();
-  
-  
-  return (
-    <View>
-     <View style={styles.gridItem}>
+   useEffect(() => {
+
+   messaging()
+   .hasPermission()
+   .then(enabled => {
+    if (enabled) {
+      console.log('has permission',enabled );
+      const fcmToken = messaging().getToken().then(token => {
+         console.log('device token',token );
+      });
+     
+      
+    } 
     
- <Text style={styles.centerItem}> connect</Text>
+
+   });
+    
+   messaging().onTokenRefresh(token => {
+        console.log('ontokenrefresh',token);
+   });
+    
+
+       messaging().onMessage(async remoteMessage => {
+           
+        console.log('A new FCM message arrived!');
+        Alert.alert(
+         'A new FCM message arrived!',
+         remoteMessage.notification.body,
+         [
+           {
+             text: "Cancel",
+             onPress: () => console.log("Cancel Pressed"),
+             style: "cancel"
+           },
+           { text: "OK" }
+         ]
+       );
+    //delete token
+    //console.log('deleted token', messaging().deleteToken);
+       
+       
+      });
   
- </View>
+
+      messaging().onNotificationOpenedApp(remoteMessage => {
+         
+         console.log('onNotificationOpenedApp');
+         Alert.alert(
+            'onNotificationOpenedApp',
+            remoteMessage.notification.body,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK"   }
+            ]
+          );
+     //delete token
+    // console.log('deleted token', messaging().deleteToken);
+    
+      });
+
+
+      messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            
+          );
+          
+          Alert.alert(
+            'Notification caused app to open from quit state:',
+            remoteMessage.notification.body,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK" }
+            ]
+          );
+        
+
+        }
+         //delete token
+    //console.log('deleted token', messaging().deleteToken);
+         
+      });
+  }, []);
+      
+    
+ const onbuttonpress=()=>{
+   console.log('deleted token', messaging().deleteToken());
+//     console.log('unregistring device');
+// messaging().unregisterDeviceForRemoteMessages();
+
+ }
+   
   
- </View>
+   
+ 
+  return (
+  <View>
+   <Button title='click me' onPress={onbuttonpress}></Button>
+  </View>
+   
   );
 }
 
 const styles = StyleSheet.create({
-  gridItem: {
-    position: 'absolute',
-    fontSize: 2,
- 
-   top: windowWidth * 0.8 * 0.7,  
-    alignItems: 'center',
-     width: windowWidth * 0.8,
-     height: windowHeight * 0.8,
-     fontFamily: 'Quicksand-Medium',
-    left: 35,
-     
-  },
    
-  centerItem: {
-    fontFamily: 'Quicksand-Medium',
-    fontSize: 55,
-    position: 'absolute',
-top:100
-    
-  },
+   mainitem:{
+   flex: 1,
+  left: 40,  
+  top: 30,
+  position:'absolute',    
+  justifyContent: 'center',
+  flexDirection: 'column', 
+   }
  
 });
 export default App;

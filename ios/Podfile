@@ -14,6 +14,8 @@ target 'dateproject' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+
   target 'dateprojectTests' do
     inherit! :complete
     # Pods for testing
