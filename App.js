@@ -1,14 +1,14 @@
 import * as React from 'react';
+ 
 import SplashScreen from 'react-native-splash-screen'
 import { useEffect, useState } from 'react';
 import {View, StyleSheet, Alert, Button} from 'react-native';
- 
- 
+import firestore from '@react-native-firebase/firestore';
 import messaging from '@react-native-firebase/messaging';
 function App() {
-  
+ 
    SplashScreen.hide();
-   useEffect(() => {
+   useEffect(  ()  => {
 
    messaging()
    .hasPermission()
@@ -16,13 +16,11 @@ function App() {
     if (enabled) {
       console.log('has permission',enabled );
       const fcmToken = messaging().getToken().then(token => {
-         console.log('device token',token );
+       console.log('tokens',token);
+         
       });
      
-      
     } 
-    
-
    });
     
    messaging().onTokenRefresh(token => {
@@ -105,9 +103,23 @@ function App() {
       
     
  const onbuttonpress=()=>{
-   console.log('deleted token', messaging().deleteToken());
-//     console.log('unregistring device');
-// messaging().unregisterDeviceForRemoteMessages();
+   //console.log('deleted token', messaging().deleteToken());
+  firestore().collection('usertoken').get().then(querySnap=>{
+  const userDevicetoken= querySnap.docs.map(docSnap=>{
+     return docSnap.data().token
+   })
+   console.log('tokens received',userDevicetoken);
+   fetch('/send-noti',{
+     method: 'post',
+     headers: {
+       'Content-Type': 'application/json'
+        
+     },
+     body: JSON.stringify({
+       tokens:userDevicetoken
+     })
+   })
+ })
 
  }
    

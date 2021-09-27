@@ -16,6 +16,8 @@ target 'dateproject' do
 
   pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
 
+  pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+
   target 'dateprojectTests' do
     inherit! :complete
     # Pods for testing
