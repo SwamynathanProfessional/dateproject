@@ -1,149 +1,91 @@
 import * as React from 'react';
- 
 import SplashScreen from 'react-native-splash-screen'
-import { useEffect, useState } from 'react';
-import {View, StyleSheet, Alert, Button} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import messaging from '@react-native-firebase/messaging';
+import { useState } from 'react';
+import {
+  DeviceEventEmitter,
+  NativeAppEventEmitter,
+  Platform,
+} from 'react-native';
+import BackgroundTimer from 'react-native-background-timer';
+import SoundPlayer from 'react-native-sound-player'
+import {View, StyleSheet, Button, Text} from 'react-native';
 function App() {
- 
+  const EventEmitter = Platform.select({
+    ios: () => NativeAppEventEmitter,
+    android: () => DeviceEventEmitter,
+  })();
    SplashScreen.hide();
-   useEffect(  ()  => {
-
-   messaging()
-   .hasPermission()
-   .then(enabled => {
-    if (enabled) {
-      console.log('has permission',enabled );
-      const fcmToken = messaging().getToken().then(token => {
-       console.log('tokens',token);
-         
-      });
-     
-    } 
-   });
-    
-   messaging().onTokenRefresh(token => {
-        console.log('ontokenrefresh',token);
-   });
-    
-
-       messaging().onMessage(async remoteMessage => {
-           
-        console.log('A new FCM message arrived!');
-        Alert.alert(
-         'A new FCM message arrived!',
-         remoteMessage.notification.body,
-         [
-           {
-             text: "Cancel",
-             onPress: () => console.log("Cancel Pressed"),
-             style: "cancel"
-           },
-           { text: "OK" }
-         ]
-       );
-    //delete token
-    //console.log('deleted token', messaging().deleteToken);
-       
-       
-      });
-  
-
-      messaging().onNotificationOpenedApp(remoteMessage => {
-         
-         console.log('onNotificationOpenedApp');
-         Alert.alert(
-            'onNotificationOpenedApp',
-            remoteMessage.notification.body,
-            [
-              {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              { text: "OK"   }
-            ]
-          );
-     //delete token
-    // console.log('deleted token', messaging().deleteToken);
-    
-      });
-
-
-      messaging()
-      .getInitialNotification()
-      .then(remoteMessage => {
-        if (remoteMessage) {
-          console.log(
-            'Notification caused app to open from quit state:',
-            
-          );
-          
-          Alert.alert(
-            'Notification caused app to open from quit state:',
-            remoteMessage.notification.body,
-            [
-              {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              { text: "OK" }
-            ]
-          );
-        
-
-        }
-         //delete token
-    //console.log('deleted token', messaging().deleteToken);
-         
-      });
-  }, []);
-      
-    
- const onbuttonpress=()=>{
-   //console.log('deleted token', messaging().deleteToken());
-  firestore().collection('usertoken').get().then(querySnap=>{
-  const userDevicetoken= querySnap.docs.map(docSnap=>{
-     return docSnap.data().token
-   })
-   console.log('tokens received',userDevicetoken);
-   fetch('/send-noti',{
-     method: 'post',
-     headers: {
-       'Content-Type': 'application/json'
-        
-     },
-     body: JSON.stringify({
-       tokens:userDevicetoken
-     })
-   })
- })
-
- }
-   
+   EventEmitter.addListener('backgroundTimer', () => {
+    // this will be executed once after 5 seconds
+    console.log('toe');
+});
+   const [visible, setvisible] = useState(true);
   
    
+   const onRun=() =>{
+    BackgroundTimer.start(10);
+   }
+
+   const onCancel=() =>{
+    BackgroundTimer.stop();
+   }
+    const Banner=() =>{
+      setTimeout(() => {
+        setvisible(false);
+      }, 10000);
+      return(
+    
+<View style={styles.container}>
+
+<Text style={styles.text}>Incoming Call</Text>
+
+<Button title='Accept' style={styles.box} color='#ff7f50'></Button>
+
+<Button title='Cancel' style={styles.box} color='#ff7f50'></Button>
+
+</View>
+      );
+
+
+
+    }
+  
+
  
   return (
-  <View>
-   <Button title='click me' onPress={onbuttonpress}></Button>
+    <View style={{flex: 1}}>
+    <Button title='Accept' style={styles.box} color='#ff7f50' onPress={onRun}></Button>
+
+    <Button title='Cancel' style={styles.box} color='#ff7f50' onPress={onCancel}></Button>
   </View>
    
+   
+  
   );
 }
 
 const styles = StyleSheet.create({
    
-   mainitem:{
-   flex: 1,
-  left: 40,  
-  top: 30,
-  position:'absolute',    
-  justifyContent: 'center',
-  flexDirection: 'column', 
-   }
+   container: {
+   height: '13%',
+ width:'100%',
+backgroundColor: 'black',
+justifyContent: 'space-around',
+alignItems: 'center',
+flexDirection: 'row',
+   },
+
+   text:{
+     textAlign: 'left',
+     color: '#f8f8ff',
+   },
+   box: {
+     color: '#ff8c00',
+    width: 50,
+    height: 100,
+    alignSelf: 'center',
+     
+  },
  
 });
 export default App;
