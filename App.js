@@ -1,6 +1,5 @@
 import * as React from 'react';
 import SplashScreen from 'react-native-splash-screen'
-import BackgroundTimer from 'react-native-background-timer';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
