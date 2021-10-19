@@ -24,6 +24,8 @@ target 'dateproject' do
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'dateprojectTests' do
     inherit! :complete
     # Pods for testing
