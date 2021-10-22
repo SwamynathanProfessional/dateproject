@@ -19,13 +19,15 @@ function App() {
   ];
 
   if (idno === 0) {
+    //call
     content =
     <> 
     <View style={{justifyContent:'space-evenly',alignItems:'center', position: 'relative', top: 20}}>
-<View style={{width: '100%', height: '45%', backgroundColor: 'red'}}>
+<View  style={{width: '100%', height: '46%', backgroundColor: 'grey'}} >
+ 
 
 </View>
-<View style={{width: '70%', height: '44%', backgroundColor: 'blue'}}>
+<View style={{width: '70%', height: '44%', backgroundColor: 'grey'}}>
 
 </View>
 
@@ -42,7 +44,7 @@ onPress={()=>{
             name= 'message'
             style={{alignSelf:'center'}}
             size={25}
-            color={video?'#696969':'white'}
+            color={'white'}
              
           />
    </TouchableOpacity> 
@@ -139,7 +141,7 @@ setAdd(true);
     
      
   } else if (idno === 1) {
-   
+   //chat
     content = <>
     <TouchableOpacity 
 onPress={()=>{
@@ -155,13 +157,14 @@ onPress={()=>{
           />
    </TouchableOpacity>
    <View style={{width:'100%', alignItems: 'baseline',
-   flexDirection: 'row', justifyContent:'space-between', position: 'absolute', bottom: 15}}>
+   flexDirection: 'row', justifyContent:'space-between', position: 'absolute', bottom: 0}}>
    <View style={styles.addinputstyle}>
    <TouchableOpacity  style={styles.imageStyle}>
    <MaterialCommunityIcons
             name='paperclip' 
             style={{flex:1}}
             size={25}
+            color={'#696969'}
       
     />
    </TouchableOpacity>
@@ -193,6 +196,7 @@ onPress={()=>{
  
     
   } else if (idno === 2) {
+    //catalog
     content = <View style={{width: '100%',height: '100%',backgroundColor:'black', position:'relative',top: 46}}>
     <Text style={{alignSelf:'center',position:'absolute', top: 250, color: 'white'}}>Catalog</Text>
     </View>
@@ -201,7 +205,8 @@ onPress={()=>{
   
   return (
 <View style={styles.maincontainer}>
- <View style={{width: '100%', height:'7%', position:'absolute', backgroundColor:'white', flexDirection: 'row'  }}>
+ <View style={{width: '100%', height:'7%', position:'absolute', backgroundColor:'white', flexDirection: 'row',alignItems:'flex-end'}}>
+ 
  {array.map((item, index) => (
           
             <TouchableOpacity
@@ -220,11 +225,65 @@ onPress={()=>{
            
         ))}
      </View>
-     <View style={{width: '100%',height: '93%',backgroundColor:'black', position:'absolute',top: 46}}>
+     <View style={{width: '100%',height: '94%',backgroundColor:'black', position:'absolute',top: 46}}>
 
      {content}
    </View>
+   <View style={{backgroundColor: '#696969', width: 230, height: 30,
+  alignSelf: 'center',
+  position:'relative',
+  marginTop: 66,
 
+ borderTopLeftRadius: 35,
+  borderBottomLeftRadius: 35,
+  
+  justifyContent: 'center',
+   borderTopRightRadius: 35, borderBottomRightRadius: 35}}>
+<View style={{width: 225, height: 20, alignSelf: 'center',
+flexDirection: 'row',justifyContent: 'space-around'}}>
+
+ 
+ <View style={{flexDirection: 'row',borderRightWidth: 1, borderRightColor: 'white', flex: 1}}>
+ <Ionicons
+            name= 'alarm-outline'
+
+            style={{alignSelf: 'flex-start'}}
+            size={20}
+            color={'white'}
+             
+          />
+ 
+<Text style={{color: 'white'}}>  00 : 00</Text>
+
+ </View>
+ <TouchableOpacity style={{flexDirection:'row', flex: 2, justifyContent: 'space-around'}}>
+ <MaterialCommunityIcons
+            name= 'account-box'
+
+            style={{alignSelf: 'flex-start'}}
+            size={20}
+            color={'white'}
+             
+          />
+         
+          <Text style={{color: 'white'}}>Send Contact</Text>
+<MaterialCommunityIcons
+            name= 'chevron-right'
+
+            style={{alignSelf: 'flex-start'}}
+            size={20}
+            color={'white'}
+             
+          />
+
+ </TouchableOpacity>
+
+          
+
+</View>
+
+
+   </View>
 
  
 
@@ -235,7 +294,8 @@ onPress={()=>{
 
    {add && (
         <View style={styles.ModelBottomTabConatiner}>
-           <View style={{flexDirection: 'row', height: '8%', width: '90%',alignSelf: 'center', position:'relative', top: 15}}>
+           <View style={{flexDirection: 'row', height: '8%',
+            width: '100%', position:'relative', top: 15}}>
            <TouchableOpacity  
             onPress={() => {
              
@@ -278,38 +338,55 @@ onPress={()=>{
             underlineColorAndroid="transparent"
           />
 </View>
+
+  <Text>Laptop</Text>
+  <View style={{flexDirection: 'row', justifyContent: 'space-around', borderBottomWidth: 0.5}}>
+  <MaterialCommunityIcons
+            name= 'account-circle'
+            size={35}
+            color={'#696969'}
+             
+          />
+        
+  <Text>Swamy Dev {'\n'} Laptops, 2-in-1 Laptops,{'\n'} Smart Phones, Tablets,{'\n'} Product Specialist</Text>  
+  <MaterialCommunityIcons
+            name= 'phone-plus'
+            size={35}
+            color={'orange'}
+             
+          />     
+  </View>
+ 
  </View>
       )}
     </View>
-    
-    
-   
-   
-  
+ 
+
   );
 }
 
 const styles = StyleSheet.create({
   maincontainer:{
-    width: '100%',
-    height: '100%',
+    flex: 1,
     backgroundColor: '#dcdcdc',
     
   },
   NoTopcontanier:{
-   flex:1,
-   justifyContent:'center',
-   borderBottomColor:'grey',
-   borderRightWidth: 1,
-   borderRightColor:'#dcdcdc'
+  flex: 1,
+  height: 40,
+  justifyContent: 'flex-start',
+  borderBottomColor:'grey',
+  borderRightWidth: 1,
+  borderRightColor:'#dcdcdc'
   },
 Topcontanier:{
-  flex:1,
-   justifyContent:'center',
+   flex: 1,
+   justifyContent: 'flex-start',
    borderBottomColor:'orange',
-   borderBottomWidth: 5,
+   borderBottomWidth: 10,
    borderRightWidth: 1, 
-  borderRightColor:'#dcdcdc'
+   height: 40,
+   borderRightColor:'#dcdcdc'
 },
   toptext:{
     textAlign: 'center', color:'orange'
@@ -318,8 +395,8 @@ Topcontanier:{
     textAlign: 'center', color:'black'
   },
   BottomTabConatiner: {
-    position: 'absolute',
-    bottom: 0,
+    position: 'relative',
+    bottom: 6,
     width: '100%',
     height: '12%',
     backgroundColor: '#fff5ee',
@@ -332,6 +409,9 @@ Topcontanier:{
   ModelBottomTabConatiner: {
     position: 'absolute',
     bottom: 0,
+    paddingLeft: 20,
+    paddingRight: 20,
+   // justifyContent: 'space-evenly',
     width: '100%',
     height: '80%',
     backgroundColor: '#fff5ee',
@@ -410,9 +490,8 @@ chatinputstyle: {
   justifyContent: 'center',
   position: 'relative',
   marginTop: 20,
-  left: 30,
   alignItems: 'center',
-  width: '83%',
+  width: '93%',
   backgroundColor: '#fff',
   borderWidth: 0.5,
   borderColor: '#000',
