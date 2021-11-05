@@ -26,6 +26,8 @@ target 'dateproject' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNSnackbar', :path => '../node_modules/react-native-snackbar'
+
   target 'dateprojectTests' do
     inherit! :complete
     # Pods for testing
