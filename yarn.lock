@@ -6583,6 +6583,16 @@
   "resolved" "https://registry.npmjs.org/react-native-push-notification/-/react-native-push-notification-8.1.0.tgz"
   "version" "8.1.0"
 
+"react-native-scaling@^1.0.0":
+  "integrity" "sha512-45JUMyvQ/S5gdNTXpK0EwI1/wL7VoCEnz9i/occKKGlsjHOlgjxDBqt1nlM/aCaE5FeAHmR4Xiv4Y43ISjJ8Fw=="
+  "resolved" "https://registry.npmjs.org/react-native-scaling/-/react-native-scaling-1.0.0.tgz"
+  "version" "1.0.0"
+
+"react-native-size-matters@^0.4.0":
+  "integrity" "sha512-8/C0htHrFWeUm9N8JegmadovUfgTWkGBkDPZ1N3YkXtDWb+98Ya2gThiKcu445r8c7YhcrBfnHz/mYsXIusaOQ=="
+  "resolved" "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.4.0.tgz"
+  "version" "0.4.0"
+
 "react-native-snackbar-component@^1.1.12":
   "integrity" "sha512-uF9Aw3lWVtFOxrd09YCXteTvIxBZ0IrwEluhhTsmNqWf3fYeJ7LbERVXYw/2p39H9tQUFGkrJcrkvDcQcUa3Pg=="
   "resolved" "https://registry.npmjs.org/react-native-snackbar-component/-/react-native-snackbar-component-1.1.12.tgz"

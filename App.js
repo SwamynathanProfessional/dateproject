@@ -4,6 +4,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome';
 import { useState } from 'react';
 import {FlatList} from 'react-native';
 import {CATEGORIES} from './data/dummy-data';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { ScaledSheet } from 'react-native-size-matters';
 import { AGENT } from './data/agent-data';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -36,7 +38,7 @@ return(
 <View 
    style={{
    width: '80%',
-   backgroundColor: 'orange',
+   backgroundColor: '#FB8B24',
    height: '3%',
    alignSelf: 'center',
    marginTop: 350, 
@@ -83,10 +85,10 @@ style={{width: 50, height: 50}}
 </View>
  <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
- <View style={{width: 55,
+ <View style={{width: 60,
   height: 30,
   backgroundColor: 'white',
-  borderColor: 'orange',
+  borderColor: '#FB8B24',
   borderWidth: 2,
   borderRadius: 6,
   justifyContent: 'center'}}>
@@ -106,17 +108,19 @@ style={{width: 50, height: 50}}
     color={'#696969'}
   
   />
-  <Text style={{color: 'orange', fontSize: 10, fontWeight: '700'}}>Share</Text>
+  <Text style={{color: '#FB8B24', fontSize: 10, fontWeight: '700'}}>Share</Text>
  </TouchableOpacity>
    
    </View>
 
-  <View style={{width: 75,
+  <View style={{width: 80,
   height: 30,
-  backgroundColor: 'orange',
+  backgroundColor: '#FB8B24',
   borderRadius: 6,
   justifyContent: 'center'}}>
- <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'space-around'}}
+ <TouchableOpacity style={{flexDirection: 'row',
+ padding: 5,
+  justifyContent: 'space-around'}}
  onPress={()=>{
    setelement('addtocart')
   setsnackbar(true);
@@ -151,26 +155,25 @@ const addFlatList = itemData => {
 <View style={{width:'100%' ,
  height: 70, padding: 10,
  flexDirection: 'column', justifyContent: 'space-around', borderBottomWidth: 0.5}}>
- <Text style={{color: 'orange', fontSize: 17}}>{itemData.item.description1}</Text>
+ <Text style={{color: '#FB8B24', fontSize: 17}}>{itemData.item.description1}</Text>
  <View>
  <Text style={{color: '#2f4f4f'}}>No agent Avaliable</Text>        
  </View>
  </View>
       );
     }
-    else{
-      return(
-        //add call flat list
+ else{
+ return(
+ //add call flat list
  <View style={{width:'100%' ,
   flexDirection: 'column', padding: 10,
   justifyContent: 'space-around', borderBottomWidth: 0.5}}>
-       <Text style={{color: 'orange', fontSize: 17}}>{itemData.item.description1}</Text>
+       <Text style={{color: '#FB8B24', fontSize: 17}}>{itemData.item.description1}</Text>
        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-       
        <MaterialCommunityIcons
        style={{width: 50, height: 50, alignSelf: 'center'}}
                  name= 'account-circle'
-                 size={40}
+                 size={50}
                  color={'#a9a9a9'}
                   
                />
@@ -186,11 +189,12 @@ const addFlatList = itemData => {
   }, 5000);
       settimerandcontactbar(false);
       setcalling(true);
+      setAdd(false)
        }}>
        <MaterialCommunityIcons
                  name= 'phone-plus'
                  size={35}
-                 color={'orange'}
+                 color={'#FB8B24'}
                   
                />
        </TouchableOpacity> 
@@ -249,7 +253,7 @@ fontSize: 15}}>support@connect.com</Text>
 
  else if(itemData.item.type === 'share'){
   return(
-   <View style={{ padding: 10, backgroundColor: 'orange',
+   <View style={{ padding: 10, backgroundColor: '#FB8B24',
      marginBottom: 15, alignItems: 'center',
     justifyContent: 'center',
     borderBottomEndRadius: 20,
@@ -322,7 +326,7 @@ setChatGoals(currentGoals => [
 {value: goalTitle, type: type},
  ...currentGoals,
 ]);
- };
+};
 
 //set the text 
 const goalInputHandler = enteredText => {
@@ -384,14 +388,14 @@ onPress={()=>{
 <Ionicons
          name="camera-reverse-sharp"
          style={{alignSelf:'center'}}
-         size={28}
+         size={scale(28)}
          color={video?'#696969': '#a9a9a9'}
                      
  />
 </View>
       
          <Text style={{textAlign:'center', position: 'relative',
-          bottom: 10,fontSize: 14}}> Flip    
+          bottom: scale(10),fontSize: 14}}> Flip    
          </Text>
           </TouchableOpacity>
           <TouchableOpacity 
@@ -433,6 +437,7 @@ position: 'relative', bottom: 10,fontSize: 14}}>Mute
          </Text>
           </TouchableOpacity>
           <TouchableOpacity 
+          disabled={calling?true:false}
 onPress={()=>{
 setAdd(true);
 }}>
@@ -441,7 +446,7 @@ setAdd(true);
             name="account-plus"
             style={{alignSelf:'center'}}
             size={28}
-            color={'#696969'}
+            color={calling?'#a9a9a9':'#696969'}
              
           />
           </View>
@@ -604,7 +609,7 @@ else if (idno === 2) {
   
   backgroundColor: '#fff',
   borderWidth: 2.5,
-  borderColor: 'orange',
+  borderColor: '#FB8B24',
   height: 40,
   borderRadius: 5,}}>
  <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -614,7 +619,7 @@ else if (idno === 2) {
     color={'#696969'}
   
   />
-    <Text style={{color: 'orange', fontSize: 13, fontWeight: '700'}}>View Full  Catalog</Text>
+    <Text style={{color: '#FB8B24', fontSize: 13, fontWeight: '700'}}>View Full  Catalog</Text>
  </TouchableOpacity>
    
    </View>
@@ -672,7 +677,7 @@ timerandcontactbar && (
              
           />
  
-<Text style={{color: 'white', fontSize: 15}}>00 : 00</Text>
+<Text style={{color: 'white', fontSize:  15}}>00 : 00</Text>
 
  </View>
  <TouchableOpacity style={styles.contactontouch}
@@ -727,10 +732,10 @@ calling && (
 <FontAwesome5
             name= 'phone-square'
             size={20}
-            color={video?'#696969':'white'}
+            color={'white'}
              
  />
-<Text style={{color: 'white', textAlign: 'center'}}>Calling...</Text>
+<Text style={{color: 'white', textAlign: 'auto', fontSize: 15}}>Calling...</Text>
 
 </View>
 
@@ -738,13 +743,14 @@ calling && (
 </View>
 )
 }
+
 {
 // mute bar  for customer
 mute && (
 <View style={styles.mutebar}>
 <View style={styles.mutebarinside}>
 
-<Text style={{color: 'white', fontSize: 15}}>Customer sound : Muted</Text>
+<Text style={{color: 'white', textAlign: 'left', fontSize: scale(12)}}>Customer sound : Muted</Text>
 </View>
 </View> 
 )
@@ -754,10 +760,10 @@ mute && (
 //add for call screen
 add && (
 <View style={styles.ModelBottomTabContainer}>
-  <View style={styles.ModelBottomTabTop}>
+<View style={styles.ModelBottomTabTop}>
            <MaterialCommunityIcons
             name= 'plus'
-            style={{color: 'orange'}}
+            style={{color: '#FB8B24'}}
             size={35}
             color={'#696969'}
          />
@@ -776,7 +782,7 @@ add && (
           />  
            </TouchableOpacity>
 
-  </View>
+</View>
 
 <View style={styles.chatinputstyle}>
    <Ionicons
@@ -799,29 +805,28 @@ renderItem={addFlatList}
 )}
 
 {
-  snackbar && (
-  snackBar( element === 'sendcontact'?
+snackbar && (
+snackBar( element === 'sendcontact'?
   'contact details shared with customer':
   element === 'share'?
   'product details shared with the customer':
   'product added to the cart'
-   )
-  )
-  }
+)
+)
+}
  
 </View>
 );
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
  fullscreen:{
-    flex: 1,
-    backgroundColor: '#dcdcdc',
-    
- },
+   flex: 1,
+  backgroundColor: '#dcdcdc',
+  },
 
  rowarrayscreen:{
-    width: '100%', height:'7%',
+    width: scale(350), height: scale(45),
     position:'absolute', 
     backgroundColor:'white',
     flexDirection: 'row',
@@ -838,8 +843,8 @@ const styles = StyleSheet.create({
 
 timerandcontactbar:{
   backgroundColor: '#696969', 
-  width: '68%',
-  height: '5%',
+  width: '200@s',
+  height: '30@vs',
   alignSelf: 'center',
   position:'absolute',
   marginTop: 66,
@@ -851,8 +856,8 @@ timerandcontactbar:{
 },
 
 timerandcontactbarinside:{
-width: '100%',
-height: '50%',
+width: '200@s',
+height: '20@vs',
 alignSelf: 'center',
 marginLeft: 10,
 flexDirection: 'row',
@@ -861,8 +866,8 @@ justifyContent: 'space-around'
  
 mutebar:{
   backgroundColor: '#696969', 
-  width: '45%',
-  height: '5%',
+  width: '152@s',
+  height: '35@vs',
   alignSelf: 'center',
   position:'absolute',
   top: 110,
@@ -899,7 +904,7 @@ justifyContent: 'space-evenly',
 sendview: {
   position: 'relative',alignSelf: 'flex-end',
   marginRight: 10,
-  backgroundColor: 'orange',
+  backgroundColor: '#FB8B24',
   height: 40, //any of height
   width: 40,
   justifyContent:'center',
@@ -923,48 +928,50 @@ textinputandsend:{
 
 
 NoTopcontanier:{
-  flex: 1,
-  height: 40,
+  flex: scale(1),
+  height: scale(40),
   justifyContent: 'flex-start',
   borderBottomColor:'grey',
-  borderRightWidth: 1,
+  borderRightWidth: scale(1),
   borderRightColor:'#dcdcdc'
   },
 
 Topcontanier:{
-   flex: 1,
+   flex: scale(1),
    justifyContent: 'flex-start',
-   borderBottomColor:'orange',
-   borderBottomWidth: 10,
-   borderRightWidth: 1, 
-   height: 40,
+   borderBottomColor:'#FB8B24',
+   borderBottomWidth: scale(9),
+   borderRightWidth: scale(1), 
+   height: scale(40),
    borderRightColor:'#dcdcdc'
 },
 
-  toptext:{
+toptext:{
     textAlign: 'center', 
-    color:'orange',
+    color:'#FB8B24',
     fontSize: 20,
-  },
+},
 
-  notoptext:{
+notoptext:{
     fontSize: 20,
     textAlign: 'center', color:'grey'
-  },
+},
 
-  BottomTabConatiner: {
+BottomTabConatiner: {
     position: 'relative',
-    bottom: 6,
-    width: '100%',
-    height: '12%',
+    bottom: 10,
+    width: scale(350),
+    height: scale(78),
+    paddingBottom: scale(20),
     backgroundColor: '#fff5ee',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flexDirection: 'row',   
-     justifyContent: 'space-around',
+    justifyContent: 'space-around',
     alignItems: 'center',
-  }, 
-  ModelBottomTabContainer: {
+}, 
+
+ModelBottomTabContainer: {
     position: 'absolute',
     bottom: 0,
     paddingLeft: 20,
@@ -978,20 +985,20 @@ Topcontanier:{
     borderTopRightRadius: 20,
     
     
-  },
+},
   
 ModelBottomTabTop:{
     flexDirection: 'row',
     height: '8%',
     width: '100%'
-  },
+},
 
 item: {
    
     alignSelf: "center",
     color:"black"
     
-  },
+},
  
 roundshape:  {
     backgroundColor: '#fa8072',
@@ -1003,7 +1010,7 @@ roundshape:  {
     zIndex:1,
     alignSelf: 'center',
     borderRadius: 150/2   // it will be height/2
-  },
+},
   
 boundshape:{
   width: '50%',
@@ -1056,11 +1063,12 @@ width: 50,
 zIndex: 1,
 justifyContent:'center', borderRadius: 150/2
 },
+
 nochatcircle:{
   position: 'absolute',
   alignSelf: 'flex-end', top: 320,
   right: 15,
-  backgroundColor: 'orange',
+  backgroundColor: '#FB8B24',
   height: 50, //any of height
   width: 50, 
   zIndex: 1,
