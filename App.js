@@ -3,13 +3,122 @@ import SplashScreen from 'react-native-splash-screen'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome';
 import { useState } from 'react';
 import {FlatList} from 'react-native';
-import {CATEGORIES} from './data/dummy-data';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { ScaledSheet } from 'react-native-size-matters';
-import { AGENT } from './data/agent-data';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View, StyleSheet, TouchableOpacity, Text,TextInput, Image} from 'react-native';
+
+
+
+class Agent {
+  constructor(description1, description2, description3) {
+
+    this.description1 = description1;
+    this.description2 = description2;
+    this.description3 = description3;
+    
+
+
+  }
+}
+ 
+
+
+class Category {
+  constructor(primaryproduct, description1, description2, description3) {
+
+    this.primaryproduct = primaryproduct;
+    this.description1 = description1;
+    this.description2 = description2;
+    this.description3 = description3;
+
+
+  }
+}
+ 
+
+
+ const CATEGORIES = [
+  new Category(
+      'Primary Product',
+      'Microsoft Surface Go 2',
+      'SKU# kI475...',
+      'Price$1,100*',
+    ),
+  
+    new Category(
+      'Primary Product',
+      'Microsoft Surface Go 3',
+      'SKU# kI475...',
+      'Price$1,100*',
+      ),
+  
+    new Category(
+      'Primary Product',
+      'Microsoft Surface Go 4',
+      'SKU# kI475...',
+      'Price$1,100*',
+    ),
+  
+
+];
+
+const AGENT = [
+  new Agent(
+         'Laptops',
+         'Swamy Dev',
+         'Laptops ,2-in-1 Laptops \n, Smart Phones, Tablets,\n Product Specialist \n'
+       ),
+     
+   new Agent(
+         '2-in-1 Laptops',
+         'Swamy Dev',
+          'Laptops ,2-in-1 Laptops \n, Smart Phones, Tablets,\n Product Specialist \n'
+      ),
+ 
+   new Agent(
+       'Smart Phones',
+       'Swamy Dev',
+       'Laptops ,2-in-1 Laptops \n, Smart Phones, Tablets,\n Product Specialist \n'
+     ),
+  
+   new Agent(
+       'Tablets',
+       'Swamy Dev',
+       'Laptops ,2-in-1 Laptops \n, Smart Phones, Tablets,\n Product Specialist \n'
+    ),
+    new Agent(
+   'Product Specialist',
+   'Swamy Dev',
+    'Laptops ,2-in-1 Laptops \n, Smart Phones, Tablets,\n Product Specialist \n'
+   ),
+  
+   new Agent(
+     'Product Explainer',
+     'null',
+     ''
+     ),
+     new Agent(
+       'VSR Support',
+       'null',
+       ''
+       ),
+ 
+       new Agent(
+         'LG',
+         'null',
+         ''
+         ),
+         new Agent(
+           'Other Avaliable agents',
+           'null',
+           ''
+           ),
+   
+ 
+ ];
+ 
 
 function App() {
 const [video, setvideo] = useState(false);
